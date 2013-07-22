@@ -18,7 +18,7 @@ exports.listAllFeeds = function (req, res) {
 
 exports.createFeed = function (req, res) {
     var feed = req.query.feed;
-    if (feed == null) {
+    if (!feed) {
         sendErrorResponse(res, {error: "Specify the feed message"});
     }
     else {
