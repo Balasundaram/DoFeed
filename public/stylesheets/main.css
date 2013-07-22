@@ -1,0 +1,199 @@
+body {
+    background: url("../images/pollroll_background.png") repeat scroll 0 0 transparent;
+}
+
+#stickyPolls {
+    display: none;
+}
+
+.section-title {
+    font-size: 12pt;
+}
+
+.fl {
+    float:left;
+}
+
+.clear {
+    clear:both;
+}
+
+.close_button {
+    background-image: url('../images/close_button.jpeg');
+    background-size: 23px 23px;
+    width: 23px;
+    height: 23px;
+}
+
+.title {
+    color: #FFFFFF;
+    text-align : center;
+    padding-top: 10px;
+}
+
+/*
+* Main Styles
+*/
+
+body {
+    font-family: Proxima-Nova, HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-inner {
+    border-radius: 0;
+}
+
+.navbar .container {
+    width: 940px;
+}
+
+body > .container {
+    background-color: #fff;
+    min-height: 560px;
+    border: 1px solid #E2E2E2;
+    margin-bottom: 30px;
+    max-width: 940px;
+    width: inherit;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, .15);
+}
+
+.login {
+    padding: 20px 0;
+}
+
+.content {
+    margin: 40px;
+}
+
+.main-block {
+    padding: 0 15px;
+}
+
+.poll-form {
+    margin: 30px 250px;
+}
+
+.btn {
+    margin-top:-10px;
+}
+
+.btn.btn-primary {
+    border-top: 1px solid #7BD;
+    border-right: 1px solid #62B1D8;
+    border-bottom: 1px solid #1F9CC4;
+    border-left: 1px solid #62B1D8;
+    background: -webkit-linear-gradient(top, #8ACADF 0%, #70C2DC 5%, #23A1C9 100%);
+    background: -moz-linear-gradient(top, #8ACADF 0%, #70C2DC 5%, #23A1C9 100%);
+    text-shadow: #3293B3 0 1px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    height: 38px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 18px;
+    vertical-align: middle;
+    padding: 0 25px;
+    border-radius: 2px;
+}
+
+.navbar-inverse .navbar-inner {
+    background: -webkit-linear-gradient(top,#86AEBB 2%, #6D9DAD 4%, #35788E 100%);
+    background: -moz-linear-gradient(top,#86AEBB 2%, #6D9DAD 4%, #35788E 100%);
+    background-color: #4D889B;
+    border-color: #2D6679;
+}
+
+.navbar-inverse .brand, .navbar-inverse .nav > li > a {
+    color: #FFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+}
+
+a, a:hover {
+    color: #1F9CC4;
+}
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+    background-color: #4D889B;
+}
+
+#submit_field {
+    margin-top: 35px;
+}
+
+/* Homepage Styles */
+
+ul.jobs {
+    margin: 60px auto;
+    width: 430px;
+    list-style-type: none;
+}
+
+ul.jobs li {
+    height: 60px;
+    margin: 20px 0;
+}
+
+ul.jobs li a {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.09);
+    background-color: #F7FAFC;
+    border: 1px solid #EBF1F5;
+    font-size: 24px;
+    font-weight: bold;
+    text-rendering: optimizelegibility;
+    padding: 20px;
+    display: block;
+}
+
+.search_q input, .search_q select {
+    padding: 0;
+    height: 33px;
+    border-radius: 0;
+}
+
+.search_q input[type="text"] {
+    width: 50%;
+    padding: 0 0 0 5px;
+    border: none;
+}
+
+.search_q {
+    padding: 0;
+    margin: 0 auto;
+    border-radius: 0;
+    border: 1px solid #ccc;
+    width: 760px;
+    height: 35px;
+}
+
+.tabbable {
+    margin: 15px 0;
+}
+
+.articles .article {
+    margin: 10px 0;
+}
+
+.stats {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.stats .stat {
+    width: 30%;
+    text-align: center;
+}
+
+.publisher .stats .stat {
+    width: 50%;
+}
+
+.entity .stats .stat {
+    width: 100%;
+}
