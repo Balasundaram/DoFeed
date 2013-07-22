@@ -2,6 +2,11 @@ var redis = require('redis');
 
 var redis_conn = redis.createClient();
 
+var feedJSON = {
+    id:null,
+    status: 0
+};
+
 exports.listAllFeeds = function (max, cb) {
     var feedList = [], done = 0, self = this;
     redis_conn.lrange("index:feeds:list", 0, max, function (err, res) {
@@ -9,7 +14,7 @@ exports.listAllFeeds = function (max, cb) {
             res.forEach(function (v) {
                 self.getFeed(v, function (err, feed) {
                     if (!err) {
-                        feedList.push({id: v, feed: feed});//JSON.parse(feed);
+                        feedList.push(feed);//JSON.parse(feed);
                         done++;
                     }
                     if (done === res.length) {
@@ -39,8 +44,10 @@ exports.getFeed = function (id, cb) {
 
 exports.createFeed = function (feed, cb) {
     var feedID = "feed-" + _getUniqueId(new Date());
+    feedJSON.message = feed;
+    feedJSON.id = feedID;
     var multi = redis_conn.multi();
-    multi.set(feedID, feed);
+    multi.set(feedID, JSON.stringify(feedJSON));
     multi.lpush("index:feeds:list", feedID);
     multi.exec(function (err, res) {
         if (err) {

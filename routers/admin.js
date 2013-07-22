@@ -8,10 +8,10 @@ exports.listAllFeeds = function (req, res) {
     }
     adminLib.listAllFeeds(max, function (err, result) {
         if (!err) {
-            writeResponse(res, 200, result);
+            sendSuccessResponse(res, result);
         }
         else {
-            writeResponse(res, 400, {error: err});
+            sendErrorResponse(res, {error: err});
         }
     });
 }
@@ -19,23 +19,28 @@ exports.listAllFeeds = function (req, res) {
 exports.createFeed = function (req, res) {
     var feed = req.query.feed;
     if (feed == null) {
-        writeResponse(res, 404, {error: "Specify the feed message"});
+        sendErrorResponse(res, {error: "Specify the feed message"});
     }
     else {
         adminLib.createFeed(feed, function (err) {
             if (!err) {
-                writeResponse(res, 200, {message: "Feed stored successfully"});
+                sendSuccessResponse(res, {message: "Feed stored successfully"});
+            }
+            else {
+                sendErrorResponse(res, {error: err});
             }
         });
     }
 }
 
-exports.index = function (req, res) {
-    res.render("testinput");
+function sendErrorResponse(res, result) {
+    res.writeHead(400, { 'Content-Type': 'application/json' });
+    res.write(JSON.stringify(result));
+    res.end();
 }
 
-function writeResponse(res, status, result) {
-    res.writeHead(status, { 'Content-Type': 'application/json' });
+function sendSuccessResponse(res, result) {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
     res.write(JSON.stringify(result));
     res.end();
 }
