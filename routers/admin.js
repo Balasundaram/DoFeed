@@ -32,6 +32,23 @@ exports.createFeed = function (req, res) {
         });
     }
 }
+//Function to remove the induvidual feed
+exports.removeFeed = function (req, res) {
+    var feedID = req.query.id;
+    if (!feedID) {
+        sendErrorResponse(res, {error: "Specify the feed id"});
+    }
+    else {
+        adminLib.removeFeed(feedID, function (err) {
+            if (!err) {
+                sendSuccessResponse(res, {message: "Feed removed successfully"});
+            }
+            else {
+                sendErrorResponse(res, {error: err});
+            }
+        });
+    }
+}
 
 function sendErrorResponse(res, result) {
     res.writeHead(400, { 'Content-Type': 'application/json' });

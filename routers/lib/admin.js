@@ -3,9 +3,8 @@ var redis = require('redis'),
 
 var redis_conn = redis.createClient();
 
-
 var feedJSON = {
-    id:null,
+    id: null,
     status: 0
 };
 
@@ -45,12 +44,12 @@ exports.getFeed = function (id, cb) {
 }
 
 exports.createFeed = function (feed, cb) {
-    var feedID = "feed-" + _getUniqueId(new Date());
+    var feedID = "feed-" + _getUniqueId(new Date()), feedList = redisHelper.getFeedList();
     feedJSON.message = feed;
     feedJSON.id = feedID;
     var multi = redis_conn.multi();
     multi.set(feedID, JSON.stringify(feedJSON));
-    multi.lpush(redisHelper.getFeedList, feedID);
+    multi.lpush(feedList, feedID);
     multi.exec(function (err, res) {
         if (err) {
             cb(err);
@@ -59,7 +58,23 @@ exports.createFeed = function (feed, cb) {
             cb(null);
         }
     });
+}
 
+//function to remove the induvidual feed
+exports.removeFeed = function (feedID, cb) {
+    var multi = redis_conn.multi(),
+        feedList = redisHelper.getFeedList();
+
+    multi.del(feedID);
+    multi.lrem(feedList, 1, feedID);
+    multi.exec(function (err, res) {
+        if (err) {
+            cb(err);
+        }
+        else {
+            cb(null);
+        }
+    });
 }
 
 _getUniqueId = function getUniqueId(date) {
