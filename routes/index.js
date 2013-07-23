@@ -3,7 +3,8 @@
  */
 var admin = require("../routers/admin");
 exports.init = function (app) {
-    app.get("/feed/list", admin.listAllFeeds);
-    app.all("/create/feed", admin.createFeed);
-    app.all("/delete/feed", admin.removeFeed);
+    app.get("/api/feed/list", admin.listAllFeeds);
+    app.all("/api/create/feed", admin.createFeed);
+    app.all("/api/feed", admin.getFeed);
+    app.all("/api/delete/feed", admin.removeFeed);
 };

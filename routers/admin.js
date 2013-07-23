@@ -40,11 +40,31 @@ exports.removeFeed = function (req, res) {
     }
     else {
         adminLib.removeFeed(feedID, function (err) {
-            if (!err) {
-                sendSuccessResponse(res, {message: "Feed removed successfully"});
+            if (err) {
+                sendErrorResponse(res, {error: err});
             }
             else {
+                sendSuccessResponse(res, {message: "Feed removed successfully"});
+            }
+        });
+    }
+}
+
+exports.getFeed = function (req, res) {
+    var feedID = req.query.id;
+    if (!feedID) {
+        sendErrorResponse(res, {error: "Specify the feed id"});
+    }
+    else {
+        adminLib.getFeed(feedID, function (err, result) {
+            if (err) {
                 sendErrorResponse(res, {error: err});
+            }
+            else if (result != null) {
+                sendSuccessResponse(res, result);
+            }
+            else {
+                sendErrorResponse(res, {error: "The feed is not present in database"});
             }
         });
     }
